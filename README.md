@@ -437,10 +437,104 @@ SELECT indicator_code, COUNT(indicator_code) AS indicator_count
 FROM international_debt
 GROUP BY indicator_code
 ORDER BY indicator_count DESC, indicator_code DESC
+LIMIT 20;
 
 ```
 
-    UsageError: %%sql is a cell magic, but the cell body is empty. Did you mean the line magic %sql (single %)?
+     * postgresql:///international_debt
+    20 rows affected.
+
+
+
+
+
+<table>
+    <tr>
+        <th>indicator_code</th>
+        <th>indicator_count</th>
+    </tr>
+    <tr>
+        <td>DT.INT.OFFT.CD</td>
+        <td>124</td>
+    </tr>
+    <tr>
+        <td>DT.INT.MLAT.CD</td>
+        <td>124</td>
+    </tr>
+    <tr>
+        <td>DT.INT.DLXF.CD</td>
+        <td>124</td>
+    </tr>
+    <tr>
+        <td>DT.AMT.OFFT.CD</td>
+        <td>124</td>
+    </tr>
+    <tr>
+        <td>DT.AMT.MLAT.CD</td>
+        <td>124</td>
+    </tr>
+    <tr>
+        <td>DT.AMT.DLXF.CD</td>
+        <td>124</td>
+    </tr>
+    <tr>
+        <td>DT.DIS.DLXF.CD</td>
+        <td>123</td>
+    </tr>
+    <tr>
+        <td>DT.INT.BLAT.CD</td>
+        <td>122</td>
+    </tr>
+    <tr>
+        <td>DT.DIS.OFFT.CD</td>
+        <td>122</td>
+    </tr>
+    <tr>
+        <td>DT.AMT.BLAT.CD</td>
+        <td>122</td>
+    </tr>
+    <tr>
+        <td>DT.DIS.MLAT.CD</td>
+        <td>120</td>
+    </tr>
+    <tr>
+        <td>DT.DIS.BLAT.CD</td>
+        <td>113</td>
+    </tr>
+    <tr>
+        <td>DT.INT.PRVT.CD</td>
+        <td>98</td>
+    </tr>
+    <tr>
+        <td>DT.AMT.PRVT.CD</td>
+        <td>98</td>
+    </tr>
+    <tr>
+        <td>DT.INT.PCBK.CD</td>
+        <td>84</td>
+    </tr>
+    <tr>
+        <td>DT.AMT.PCBK.CD</td>
+        <td>84</td>
+    </tr>
+    <tr>
+        <td>DT.INT.DPNG.CD</td>
+        <td>79</td>
+    </tr>
+    <tr>
+        <td>DT.AMT.DPNG.CD</td>
+        <td>79</td>
+    </tr>
+    <tr>
+        <td>DT.INT.PBND.CD</td>
+        <td>69</td>
+    </tr>
+    <tr>
+        <td>DT.AMT.PBND.CD</td>
+        <td>69</td>
+    </tr>
+</table>
+
 
 
 ## 9. Other viable debt issues and conclusion
@@ -452,4 +546,76 @@ ORDER BY indicator_count DESC, indicator_code DESC
 ```sql
 %%sql
 
+SELECT country_name, indicator_code, MAX(debt) AS maximum_debt
+FROM international_debt
+GROUP BY country_name, indicator_code
+ORDER BY maximum_debt DESC
+LIMIT 10;
 ```
+
+     * postgresql:///international_debt
+    10 rows affected.
+
+
+
+
+
+<table>
+    <tr>
+        <th>country_name</th>
+        <th>indicator_code</th>
+        <th>maximum_debt</th>
+    </tr>
+    <tr>
+        <td>China</td>
+        <td>DT.AMT.DLXF.CD</td>
+        <td>96218620835.699996948</td>
+    </tr>
+    <tr>
+        <td>Brazil</td>
+        <td>DT.AMT.DLXF.CD</td>
+        <td>90041840304.100006104</td>
+    </tr>
+    <tr>
+        <td>China</td>
+        <td>DT.AMT.DPNG.CD</td>
+        <td>72392986213.800003052</td>
+    </tr>
+    <tr>
+        <td>Russian Federation</td>
+        <td>DT.AMT.DLXF.CD</td>
+        <td>66589761833.5</td>
+    </tr>
+    <tr>
+        <td>Turkey</td>
+        <td>DT.AMT.DLXF.CD</td>
+        <td>51555031005.800003052</td>
+    </tr>
+    <tr>
+        <td>South Asia</td>
+        <td>DT.AMT.DLXF.CD</td>
+        <td>48756295898.199996948</td>
+    </tr>
+    <tr>
+        <td>Brazil</td>
+        <td>DT.AMT.PRVT.CD</td>
+        <td>43598697498.599998474</td>
+    </tr>
+    <tr>
+        <td>Russian Federation</td>
+        <td>DT.AMT.DPNG.CD</td>
+        <td>42800154974.900001526</td>
+    </tr>
+    <tr>
+        <td>Brazil</td>
+        <td>DT.AMT.DPNG.CD</td>
+        <td>41831444053.300003052</td>
+    </tr>
+    <tr>
+        <td>Least developed countries: UN classification</td>
+        <td>DT.DIS.DLXF.CD</td>
+        <td>40160766261.599998474</td>
+    </tr>
+</table>
+
+
